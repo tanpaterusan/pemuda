@@ -49,6 +49,11 @@ class AduanModel extends Model
         }
     }
 
+    public function getTiket($tiket)
+    {
+        return $this->where(['tiket' => $tiket])->findAll();
+    }
+
     public function baru($bulan)
     {
         $time = [
