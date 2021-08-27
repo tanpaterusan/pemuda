@@ -27,6 +27,7 @@
                         <a class="navbar-brand" href="<?= base_url('user/file'); ?>">Tambahkan bukti</a>
                     </li>
                 </ul>
+                <a class="navbar-item nav-link" href="<?= base_url('user'); ?>">keluar</a>
             </div>
         </nav>
 

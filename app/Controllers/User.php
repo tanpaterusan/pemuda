@@ -123,20 +123,25 @@ class User extends BaseController
     {
         $tiket = $this->request->getVar('tiket');
         $aduan = $this->aduan->getTiket($tiket);
-        if ($aduan !== null) {
-            if ($aduan["status"] == "baru") {
-                $msg = 'Diterima';
-            } elseif ($aduan["status"] == "ditindaklanjuti") {
-                $msg = 'Ditindaklanjuti';
-            } elseif ($aduan["status"] == "stop") {
-                $msg = 'Tidak Ditindaklanjuti';
+        foreach ($aduan as $a) {
+            if ($a !== null) {
+                if ($a["status"] == "baru") {
+                    $msg = 'Diterima';
+                } elseif ($a["status"] == "lanjut1") {
+                    $msg = 'Lanjut Tahap 1';
+                } elseif ($a["status"] == "lanjut2") {
+                    $msg = 'Lanjut Tahap 2';
+                } elseif ($a["status"] == "lanjut3") {
+                    $msg = 'Lanjut Tahap 3';
+                } elseif ($a["status"] == "stop") {
+                    $msg = 'Tidak Ditindaklanjuti';
+                } else {
+                    $msg = 'Selesai';
+                }
             } else {
-                $msg = 'Selesai';
+                $msg = 'Maaf, tiket yang Anda masukkan salah!';
             }
-        } else {
-            $msg = 'Maaf, tiket yang Anda masukkan salah!';
         }
-
         return redirect()->to('user/cek')->with('msg', $msg);
     }
 
